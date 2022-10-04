@@ -303,7 +303,7 @@ func (c *client) RoundTripOpt(req *http.Request, opt RoundTripOpt) (*http.Respon
 		}
 		return nil, rerr.err
 	}
-	if opt.DontCloseRequestStream {
+	if opt.DontCloseRequestStream && rerr.err == nil {
 		close(reqDone)
 		<-done
 	}
